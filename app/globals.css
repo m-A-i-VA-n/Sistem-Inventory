@@ -1,0 +1,930 @@
+@import "tailwindcss";
+
+/* =========================================================
+   ROOT
+========================================================= */
+
+:root {
+  --background: #f5f8fa;
+  --foreground: #34444b;
+  --tm-blue: #369;
+  --tm-cyan: #38b;
+  --tm-text: #707070;
+  --tm-border: #dce6e9;
+}
+
+/* =========================================================
+   THEME
+========================================================= */
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+/* =========================================================
+   GLOBAL
+========================================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+  background: var(--background);
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  overflow-x: hidden;
+
+  background: var(--background);
+  color: var(--tm-text);
+
+  font-family: "Raleway", Arial, Helvetica, sans-serif;
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+a {
+  color: var(--tm-cyan);
+  text-decoration: none;
+
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+a:hover,
+a:focus-visible {
+  color: #d40;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  color: var(--tm-blue);
+  line-height: 1.25;
+}
+
+/* =========================================================
+   DASHBOARD FRAME
+========================================================= */
+
+.app-shell {
+  display: flex;
+  min-height: 100vh;
+  background: var(--background);
+}
+
+.app-content {
+  display: flex;
+  min-width: 0;
+  flex: 1;
+  flex-direction: column;
+}
+
+.app-main {
+  width: 100%;
+  flex: 1;
+  padding: 34px clamp(20px, 3vw, 48px) !important;
+}
+
+/* =========================================================
+   SIDEBAR
+========================================================= */
+
+aside {
+flex: 0 0 260px;
+
+background-color: #222 !important;
+
+background-image:
+linear-gradient(
+rgb(34 34 34 / 70%),
+rgb(34 34 34 / 82%)
+),
+url("/img/infinite-loop-01.jpg");
+
+background-repeat: no-repeat;
+background-position: center;
+background-size: cover;
+
+height: 180vh;
+min-height: 375px;
+position: relative;
+
+border-right: 1px solid var(--tm-border) !important;
+box-shadow: 4px 0 18px rgb(20 70 80 / 5%) !important;
+}
+
+aside h2 {
+color: #ffffff !important;
+}
+
+aside nav a {
+color: #ffffff !important;
+
+transition:
+color 0.2s ease,
+background-color 0.2s ease,
+transform 0.2s ease;
+}
+
+aside nav a:hover,
+aside nav a:focus-visible {
+color: #fff !important;
+background: var(--tm-blue) !important;
+transform: translateX(3px);
+}
+
+/* =========================================================
+    HBOARD CARD
+========================================================= */
+
+.dashboard-card {
+  flex: 1;
+  min-width: 200px !important;
+
+  padding: 22px 24px !important;
+
+  border: 1px solid var(--tm-border) !important;
+  border-radius: 8px !important;
+
+  background: #fff !important;
+  
+
+  box-shadow: 0 8px 24px rgb(20 70 80 / 6%) !important;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.dashboard-card:hover {
+  transform: translateY(-3px);
+
+  box-shadow: 0 12px 28px rgb(20 70 80 / 11%) !important;
+}
+
+.dashboard-card-accent {
+  height: 3px !important;
+
+  margin-bottom: 18px !important;
+
+  border-radius: 999px;
+
+  background: var(--tm-cyan);
+}
+
+.dashboard-card-label {
+  margin: 0;
+
+  color: var(--tm-text) !important;
+
+  font-size: 14px;
+  font-weight: 500;
+
+  letter-spacing: 0.02em;
+}
+
+.dashboard-card-value {
+  margin-top: 8px !important;
+  margin-bottom: 0;
+
+  color: var(--tm-blue) !important;
+
+  font-size: 2.25rem !important;
+  font-weight: 600 !important;
+}
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+header {
+  background: #c5bfbf !important;
+  background-image: url("/img/infinite-loop-03.jpg");
+
+  border-bottom: 1px solid var(--tm-border) !important;
+
+  box-shadow: 0 3px 18px rgb(20 70 80 / 5%) !important;
+}
+
+header h2 {
+  color: var(--tm-blue) !important;
+}
+
+/* =========================================================
+   PANELS / FORMS / TABLES
+========================================================= */
+
+main h1 {
+  margin-top: 0;
+  margin-bottom: 1.25rem;
+
+  color: var(--tm-blue);
+
+  font-size: clamp(1.8rem, 3vw, 2.35rem);
+  font-weight: 500;
+}
+
+main h2,
+main h3 {
+  font-weight: 600;
+}
+
+main > div[style*="background-color: rgb(255, 255, 255)"],
+main > div[style*="backgroundColor: rgb(255, 255, 255)"] {
+  border: 1px solid var(--tm-border) !important;
+
+  box-shadow: 0 8px 24px rgb(20 70 80 / 7%) !important;
+}
+
+/* =========================================================
+   GENERAL INPUT
+========================================================= */
+
+main input,
+main select,
+main textarea,
+body > div input,
+body > div select {
+  max-width: 100%;
+
+  border: 1px solid #cbdadd !important;
+  border-radius: 6px !important;
+
+  background-color: #fff;
+  color: #34444b;
+  outline: none;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+main input:focus,
+main select:focus,
+main textarea:focus,
+body > div input:focus,
+body > div select:focus {
+  border-color: var(--tm-cyan) !important;
+
+  box-shadow: 0 0 0 3px rgb(56 136 187 / 14%);
+}
+
+/* =========================================================
+   GENERAL BUTTON
+========================================================= */
+
+main button,
+body > div button {
+  border-radius: 6px !important;
+
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+main button:hover,
+body > div button:hover {
+  filter: brightness(1.08);
+
+  box-shadow: 0 5px 14px rgb(20 70 80 / 14%);
+}
+
+main button:active,
+body > div button:active {
+  transform: translateY(1px);
+}
+
+/* =========================================================
+   TABLE
+========================================================= */
+
+main table {
+  width: 100%;
+
+  border-collapse: collapse;
+
+  background: #fff;
+}
+
+main th {
+  background-color: #eaf3f6 !important;
+
+  color: var(--tm-blue);
+
+  font-weight: 700;
+}
+
+main th,
+main td {
+  border-color: var(--tm-border) !important;
+}
+
+main td {
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+
+main tbody tr:hover {
+  background: #f1f8fa;
+}
+
+/* =========================================================
+   LOGIN SCREEN
+   Infinite Loop inspired design
+========================================================= */
+
+.login-screen {
+  position: relative;
+
+  width: 100%;
+  min-height: 100vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 30px 20px;
+
+  background-color: #222;
+  background-image: url("/img/infinite-loop-01.jpg");
+
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+
+  overflow: hidden;
+
+  font-family: "Raleway", Arial, Helvetica, sans-serif;
+}
+
+/* =========================================================
+   LOGIN OVERLAY
+========================================================= */
+
+.login-overlay {
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(0, 24, 40, 0.82),
+      rgba(20, 70, 80, 0.48)
+    );
+
+  z-index: 1;
+}
+
+/* =========================================================
+   LOGIN CONTENT
+========================================================= */
+
+.login-content {
+  position: relative;
+
+  z-index: 2;
+
+  width: 100%;
+  max-width: 460px;
+
+  padding: 20px;
+}
+
+/* =========================================================
+   LOGIN CARD
+========================================================= */
+
+.login-card {
+  width: 100%;
+
+  padding: 42px;
+
+  background: rgba(255, 255, 255, 0.97);
+
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 5px;
+
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.35);
+
+  backdrop-filter: blur(8px);
+
+  animation: loginCardAppear 0.7s ease;
+}
+
+@keyframes loginCardAppear {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================================================
+   LOGIN HEADER
+========================================================= */
+
+.login-header {
+  margin-bottom: 30px;
+
+  text-align: center;
+}
+
+.login-header h1 {
+  margin: 0 0 10px;
+
+  color: var(--tm-blue);
+
+  font-size: 2rem;
+  font-weight: 500;
+
+  letter-spacing: 0.5px;
+}
+
+.login-header p {
+  margin: 0;
+
+  color: #707070;
+
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* =========================================================
+   LOGIN ICON
+========================================================= */
+
+.login-icon {
+  width: 64px;
+  height: 64px;
+
+  margin: 0 auto 18px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: var(--tm-blue);
+
+  color: #fff;
+
+  border-radius: 50%;
+
+  font-size: 1.5rem;
+
+  box-shadow:
+    0 8px 20px rgba(51, 102, 153, 0.3);
+}
+
+/* =========================================================
+   LOGIN FORM
+========================================================= */
+
+.login-field {
+  margin-bottom: 20px;
+}
+
+.login-field label {
+  display: block;
+
+  margin-bottom: 8px;
+
+  color: #444;
+
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+/* =========================================================
+   LOGIN INPUT
+========================================================= */
+
+.login-field input {
+  width: 100%;
+
+  min-height: 48px;
+
+  padding: 13px 15px;
+
+  border: 1px solid #d5d5d5 !important;
+  border-radius: 4px !important;
+
+  background: #fff;
+
+  color: #444;
+
+  font-family: "Raleway", Arial, Helvetica, sans-serif;
+  font-size: 0.95rem;
+
+  outline: none;
+
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    background-color 0.3s ease;
+}
+
+.login-field input::placeholder {
+  color: #999;
+
+  opacity: 1;
+}
+
+.login-field input:focus {
+  border-color: var(--tm-blue) !important;
+
+  background: #fff;
+
+  box-shadow:
+    0 0 0 3px rgba(51, 102, 153, 0.12);
+}
+
+/* =========================================================
+   LOGIN BUTTON
+========================================================= */
+
+.login-button {
+  width: 100%;
+
+  min-height: 48px;
+
+  margin-top: 8px;
+
+  padding: 13px 25px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 12px;
+
+  border: none !important;
+  border-radius: 4px !important;
+
+  background: var(--tm-blue) !important;
+
+  color: #fff;
+
+  font-family: "Raleway", Arial, Helvetica, sans-serif;
+
+  font-size: 0.95rem;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.3s ease,
+    transform 0.2s ease,
+    box-shadow 0.3s ease;
+}
+
+.login-button:hover {
+  background: var(--tm-cyan) !important;
+
+  box-shadow:
+    0 8px 20px rgba(51, 136, 187, 0.3);
+
+  transform: translateY(-1px);
+}
+
+.login-button:active {
+  transform: translateY(0);
+}
+
+.login-button span {
+  font-size: 1.1rem;
+
+  transition: transform 0.3s ease;
+}
+
+.login-button:hover span {
+  transform: translateX(4px);
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 760px) {
+  .app-shell {
+    flex-direction: column;
+  }
+
+  aside {
+    flex: auto;
+
+    width: 100% !important;
+
+    padding: 18px !important;
+
+    border-right: 0 !important;
+    border-bottom: 1px solid var(--tm-border) !important;
+  }
+
+  aside nav {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 4px;
+  }
+
+  aside nav a {
+    margin: 0 !important;
+
+    padding: 8px 10px !important;
+  }
+
+  header {
+    gap: 16px;
+
+    align-items: flex-start !important;
+
+    flex-wrap: wrap;
+
+    padding: 16px 20px !important;
+  }
+
+  header > div:last-child {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 12px !important;
+  }
+
+  main {
+    padding: 20px !important;
+  }
+
+  .app-main {
+    padding: 22px 18px !important;
+  }
+
+  .dashboard-card {
+    min-width: min(100%, 200px) !important;
+  }
+}
+
+/* =========================================================
+   LOGIN RESPONSIVE
+========================================================= */
+
+@media (max-width: 576px) {
+  .login-screen {
+    padding: 20px 15px;
+  }
+
+  .login-content {
+    padding: 10px;
+  }
+
+  .login-card {
+    padding: 35px 25px;
+  }
+
+  .login-header h1 {
+    font-size: 1.7rem;
+  }
+
+  .login-header p {
+    font-size: 0.9rem;
+  }
+
+  .login-icon {
+    width: 58px;
+    height: 58px;
+
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-height: 600px) {
+  .login-screen {
+    min-height: 100vh;
+
+    padding-top: 30px;
+    padding-bottom: 30px;
+
+    align-items: flex-start;
+
+    overflow-y: auto;
+  }
+}
+
+/*dashboard css*/
+
+
+.dashboard-page {
+position: relative;
+width: 100%;
+min-height: 100vh;
+padding: 30px;
+background-image:
+linear-gradient(
+rgb(255 255 255 / 82%),
+rgb(255 255 255 / 88%)
+),
+url("/img/infinite-loop-02.jpg");
+background-position: center;
+background-size: cover;
+background-repeat: no-repeat;
+background-attachment: fixed;
+border-radius: 12px;
+}
+
+/* Judul Dashboard */
+
+.dashboard-heading {
+margin-bottom: 28px;
+}
+
+.dashboard-heading h1 {
+margin: 0;
+color: var(--tm-blue);
+font-size: 2rem;
+font-weight: 700;
+}
+
+.dashboard-heading p {
+margin: 6px 0 0;
+color: var(--tm-text);
+}
+
+/* Kartu Statistik */
+
+.dashboard-cards {
+display: grid;
+grid-template-columns: repeat(5, minmax(0, 1fr));
+gap: 18px;
+}
+
+/* Restock */
+
+.dashboard-restock,
+.dashboard-chart {
+margin-top: 28px;
+padding: 24px;
+background: rgb(255 255 255 / 94%);
+border: 1px solid rgb(255 255 255 / 70%);
+border-radius: 12px;
+box-shadow: 0 10px 30px rgb(20 70 80 / 12%);
+backdrop-filter: blur(6px);
+}
+
+.dashboard-restock-header,
+.dashboard-chart-header {
+display: flex;
+align-items: center;
+justify-content: space-between;
+gap: 16px;
+margin-bottom: 18px;
+}
+
+.dashboard-restock-header h2,
+.dashboard-chart-header h2 {
+margin: 0;
+color: var(--tm-blue);
+font-size: 1.25rem;
+font-weight: 700;
+}
+
+.dashboard-restock-header span {
+padding: 5px 10px;
+border-radius: 20px;
+background: #fff7ed;
+color: #c2410c;
+font-size: 0.85rem;
+font-weight: 700;
+}
+
+/* List Restock */
+
+.dashboard-restock-list {
+display: flex;
+flex-direction: column;
+gap: 10px;
+}
+
+.dashboard-restock-item {
+display: flex;
+align-items: center;
+justify-content: space-between;
+gap: 16px;
+padding: 14px 16px;
+border: 1px solid #fde1c3;
+border-radius: 8px;
+background: rgb(255 250 245 / 90%);
+}
+
+.dashboard-restock-item strong {
+color: #34444b;
+font-weight: 700;
+}
+
+.dashboard-restock-item p {
+margin: 4px 0 0;
+color: var(--tm-text);
+font-size: 0.9rem;
+}
+
+.dashboard-stock-warning {
+flex-shrink: 0;
+padding: 5px 10px;
+border-radius: 20px;
+background: #fee2e2;
+color: #dc2626;
+font-size: 0.8rem;
+font-weight: 700;
+}
+
+/* Tidak ada Restock */
+
+.dashboard-empty {
+padding: 20px;
+border-radius: 8px;
+background: rgb(245 248 250 / 90%);
+text-align: center;
+}
+
+.dashboard-empty p {
+margin: 0;
+color: var(--tm-text);
+}
+
+/* Chart */
+
+.dashboard-chart-header {
+display: block;
+}
+
+.dashboard-chart-header p {
+margin: 5px 0 0;
+color: var(--tm-text);
+font-size: 0.9rem;
+}
+
+/* Responsive */
+
+@media (max-width: 1100px) {
+.dashboard-cards {
+grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+}
+
+@media (max-width: 700px) {
+.dashboard-page {
+padding: 20px;
+}
+
+.dashboard-cards {
+grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.dashboard-restock,
+.dashboard-chart {
+padding: 18px;
+}
+
+.dashboard-restock-header {
+align-items: flex-start;
+}
+}
+
+@media (max-width: 480px) {
+.dashboard-page {
+padding: 15px;
+}
+
+.dashboard-cards {
+grid-template-columns: 1fr;
+}
+
+.dashboard-restock-item {
+align-items: flex-start;
+}
+}
