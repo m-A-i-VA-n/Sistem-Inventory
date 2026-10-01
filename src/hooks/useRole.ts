@@ -1,47 +1,31 @@
 "use client";
 
-import {
-  useEffect,
-  useState,
-} from "react";
+import { useEffect, useState } from "react";
 
-import {
-  auth,
-} from "../lib/firebase";
-
-import {
-  getUserRole,
-} from "../services/user";
+import { auth } from "../lib/firebase";
+import { getUserRole } from "../services/user";
 
 export default function useRole() {
-
-  const [role,
-    setRole] =
-    useState("");
+  const [role, setRole] = useState("");
 
   useEffect(() => {
-
     async function loadRole() {
+      const uid = auth.currentUser?.uid;
 
-      const email =
-        auth.currentUser
-          ?.email;
-
-      if (!email)
+      if (!uid) {
         return;
+      }
 
-      const roleData =
-        await getUserRole(
-          email
-        );
-
-      setRole(
-        roleData
-      );
+      try {
+        const roleData = await getUserRole(uid);
+        setRole(roleData);
+      } catch (error) {
+        console.error("Failed to load user role:", error);
+        setRole("staff");
+      }
     }
 
     loadRole();
-
   }, []);
 
   return role;
